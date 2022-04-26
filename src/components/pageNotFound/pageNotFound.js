@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Footer = () => {
+export const PageNotFound = () => {
   return (
     <div>
-      Footer
+      Page Not Found
     </div>
   )
 }

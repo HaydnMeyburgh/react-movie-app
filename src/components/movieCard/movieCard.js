@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Footer = () => {
+export const MovieCard = () => {
   return (
     <div>
-      Footer
+      Movie Card
     </div>
   )
 }

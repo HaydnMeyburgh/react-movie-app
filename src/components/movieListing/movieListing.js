@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Footer = () => {
+export const MovieListing = () => {
   return (
     <div>
-      Footer
+      Movie Listing
     </div>
   )
 }
