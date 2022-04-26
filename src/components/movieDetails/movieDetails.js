@@ -1,6 +1,6 @@
 import React from "react";
 
- export const MovieDetials = () => {
+ export const MovieDetails = () => {
   return (
     <div>
       MovieDetials
