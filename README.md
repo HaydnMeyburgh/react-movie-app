@@ -1,4 +1,4 @@
-# React Movie App
+# React/Redux Movie App
 
 - [React Movie App](https://haydnmeyburgh.github.io/react-movie-app/) 
 
