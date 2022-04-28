@@ -5,28 +5,34 @@ import { apiKey } from "../../common/apis/movieApiKey";
 export const fetchAsyncMovies = createAsyncThunk('movies/fetchAsyncMovies', async () => {
   const movieText = "Harry";
   const response = await movieApi
-    .get(`?apiKey=${apiKey}&s=${movieText}&type=movie`)
+    .get(`?apikey=${apiKey}&s=${movieText}&type=movie`)
     return response.data;
 })
 export const fetchAsyncShows = createAsyncThunk('movies/fetchAsyncShows', async () => {
   const seriesText = "Friends";
   const response = await movieApi
-    .get(`?apiKey=${apiKey}&s=${seriesText}&type=series`)
+    .get(`?apikey=${apiKey}&s=${seriesText}&type=series`)
+    return response.data;
+})
+export const fetchAsyncDetails = createAsyncThunk('movies/fetchAsyncDetails', async (id) => {
+  const response = await movieApi
+    .get(`?apikey=${apiKey}&i=${id}&Plot=full`)
     return response.data;
 })
 
 const initialState = {
   movies: {},
-  shows: {}
+  shows: {},
+  selectedDetails: {}
 }
 
 export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    addMovies: (state, action) => {
-      state.movies = action.payload;
-    },
+    removeSelectedMovieOrShow: (state) => {
+      state.selectedDetails = {};
+    }
   },
   extraReducers: {
     [fetchAsyncMovies.pending]: () => {
@@ -43,11 +49,16 @@ export const moviesSlice = createSlice({
       console.log("fetched successfully!");
       return {...state, shows: action.payload}
     },
+    [fetchAsyncDetails.fulfilled]: (state, action) => {
+      console.log("fetched successfully!");
+      return {...state, selectedDetails: action.payload}
+    },
   }
 });
 
-export const { addMovies, addShows } = moviesSlice.actions;
+export const { removeSelectedMovieOrShow } = moviesSlice.actions;
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllShows = (state) => state.movies.shows;
+export const getSelectedDetails = (state) => state.movies.selectedDetails;
 export default moviesSlice.reducer;
 
